@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" >
+<head>
+ <title>Ui BrixPloder Documentation release 0.5</title>
+
+ <link rel="stylesheet" rel="stylesheet" title="Default" href="/css/redmond2/jquery-ui-1.8.9.custom.css" type="text/css" media="screen">
+  
+ <style>
+  body,table{margin:0;padding:0;width:100%;height:100%;}
+  td{text-align:center}
+  pre{color:#666;font-size: 1.1em;}
+  code{font-family: monospace;}
+  .documentation{border:1px;}
+  .ui-tabs-panel{min-height:400px;}
+  .ui-accordion-header{min-height:24px;height:24px;}
+  .ui-accordion-content{min-height:50px;height:50px;}
+  .ui-tabs-panel{width:600px;}
+  .maintab{position:absolute;top:50px;left:100px;width:85%;}
+  .home{position:absolute;top:5px;left:5px;width:24px;height:24px}
+ </style>
+
+ <script type="text/javascript" src="/js/ext/jquery-1.5.1.min.js" ></script>
+ <script type="text/javascript" src="/js/ext/jquery.cookie.js" ></script>        
+ <script type="text/javascript" src="/js/ext/jquery-ui-1.8.9.custom.min.js" ></script>
+ <script type="text/javascript" src="/js/core/doc-ui-brixploder.js" ></script>
+ 
+</head>
+
+<body>
+
+<a href="#" id="home" class="home"></a>
+
+<div id="doctab" class="maintab"><!--Tab Documentation-->
+ <ul><!--Onglets Documentation-->
+	<li><a href="#doctab-1">Librairies</a></li>
+	<li><a href="#doctab-2">Widget Ui-Brixploder</a></li>
+	<li><a href="#doctab-3">Widget Ui-BrixploderBar</a></li>
+  <li><a href="#doctab-4">Widget Ui-BrixploderBrick</a></li>
+  <li><a href="#doctab-5">Widget Ui-BrixploderBall</a></li>
+  
+
+ </ul>
+	
+ <div id="doctab-1">
+ <p>
+ <pre>
+ 
+  <code class="documentation">
+   Libraries Externes:   
+  
+  &#60;script type="text/javascript" src="./js/ext/jquery-1.5.1.min.js"&#62;&#60;/script&#62;
+  &#60;script type="text/javascript" src="./js/ext/jquery.cookie.js"&#62;&#60;/script&#62;        
+  &#60;script type="text/javascript" src="./js/ext/jquery-ui-1.8.9.custom.min.js"&#62;&#60;/script&#62;
+ 
+  Librairies Internes:
+  
+   &#60;script type="text/javascript" src="./js/core/ui-brixploder-tools.js"&#62;&#60;/script&#62;
+   &#60;script type="text/javascript" src="./js/core/ui-brixploderbar.js"&#62;&#60;/script&#62; 
+   &#60;script type="text/javascript" src="./js/core/ui-brixploderbrick.js"&#62;&#60;/script&#62;
+   &#60;script type="text/javascript" src="./js/core/ui-brixploderball.js"&#62;&#60;/script&#62;
+   &#60;script type="text/javascript" src="./js/core/ui-brixploder.js"&#62;&#60;/script&#62;
+   &#60;script type="text/javascript" src="./js/core/ui-brixploder-instance.js"&#62;&#60;/script&#62; 
+
+  </code>
+ 
+ </pre>
+ </p>
+ </div>
+ <div id="doctab-2">
+ <p>
+  <pre>
+  <code class="documentation">
+   $('#brixploder').brixploder({lives:4}); //jouer avec 4 vies
+  </code>
+  </pre>
+  
+   <table id="optionsuibrixploder" class="ui-widget ui-widget-content">
+		<thead>
+			<tr class="ui-widget-header ">
+				<th>Options</th>
+				<th>Valeur par d&eacute;faut</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		<tr>
+		 <td>bricks</td>
+		 <td>0</td>
+		 <td>Nombre de briques du niveau</td>
+		</tr>
+		
+		<tr>
+		 <td>barwidth</td>
+		 <td>80</td>
+		 <td>largeur en pixel de la barre</td>
+		</tr>
+		
+		<tr>
+		 <td>barheight</td>
+		 <td>12</td>
+		 <td>hauteur de la barre en pixels</td>
+		</tr>
+		
+		<tr>
+		 <td>bartop</td>
+		 <td>450</td>
+		 <td>position top de la barre</td>
+		</tr>
+		
+		<tr>
+		 <td>barleft</td>
+		 <td>100</td>
+		 <td>position left de la barre</td>
+		</tr>
+		
+		<tr>
+		 <td>ballwidth</td>
+		 <td>6</td>
+		 <td>largeur en pixel de la balle</td>
+		</tr>
+		
+		<tr>
+		 <td>balltop</td>
+		 <td>400</td>
+		 <td>position top de la balle</td>
+		</tr>
+		
+		<tr>
+		 <td>ballleft</td>
+		 <td>100</td>
+		 <td>position left de la balle</td>
+		</tr>
+		
+	 <tr>
+		 <td>brickwidth</td>
+		 <td>20</td>
+		 <td>largeur en pixel de la brique</td>
+		</tr>
+		
+		<tr>
+		 <td>brickheight</td>
+		 <td>12</td>
+		 <td>hauteur de la brique en pixels</td>
+		</tr>
+		
+		
+		
+	 <tr>
+		 <td>gridwidth</td>
+		 <td>360</td>
+		 <td>largeur en pixel de la grille de jeu</td>
+		</tr>
+		
+		<tr>
+		 <td>gridheight</td>
+		 <td>500</td>
+		 <td>hauteur de la grille de jeu en pixels</td>
+		</tr>
+		
+		
+		<tr>
+		 <td>gridtop</td>
+		 <td>50</td>
+		 <td>position top de la grille de jeu</td>
+		</tr>
+		
+		<tr>
+		 <td>gridleft</td>
+		 <td>50</td>
+		 <td>position left de la grille de jeu</td>
+		</tr>
+		
+		<tr>
+		 <td>lives</td>
+		 <td>3</td>
+		 <td>Nombre de vies</td>
+		</tr>
+		
+		</tbody>
+	</table>
+   
+   
+
+ </p>
+ </div><!--Fin onglet doctab-2 -->
+ 
+  <div id="doctab-3">
+
+  <p>
+   <pre>
+   <code class="documentation">
+   $('#brixploder').brixploderbar(
+      {width:80,
+       top:100,
+       left:50,
+       heigth:12
+      }); 
+   </code>
+   </pre>
+  
+   <table id="optionsbrixploderbar" class="ui-widget ui-widget-content">
+       <thead>
+			<tr class="ui-widget-header ">
+				<th>Options</th>
+				<th>Valeur par d&eacute;faut</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+       <tbody>
+        
+        <tr>
+		 <td>width</td>
+		 <td>360</td>
+		 <td>largeur en pixel de la barre</td>
+		</tr>
+		
+		<tr>
+		 <td>height</td>
+		 <td>500</td>
+		 <td>hauteur de la barre en pixels</td>
+		</tr>
+		
+		
+		<tr>
+		 <td>top</td>
+		 <td>50</td>
+		 <td>position top de la barre</td>
+		</tr>
+		
+		<tr>
+		 <td>left</td>
+		 <td>50</td>
+		 <td>position left de la barre</td>
+		</tr>
+		
+       
+       </tbody>
+     </table>
+  </p>
+  </div><!--Fin onglet doctab-3 -->
+
+  
+  <div id="doctab-4">
+
+  <p>
+   <pre>
+   <code class="documentation">
+   $('&#60;div>&#60;/div>').brixploderbrick(); 
+   </code>
+   </pre>
+  
+   <table id="optionsbrixploderbar" class="ui-widget ui-widget-content">
+       <thead>
+			<tr class="ui-widget-header ">
+				<th>Options</th>
+				<th>Valeur par d&eacute;faut</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+       <tbody>
+        
+    <tr>
+		 <td>solidity</td>
+		 <td>1</td>
+		 <td>r&eacute;sistance de la brique</td>
+		</tr>
+		
+	
+		
+		
+       
+       </tbody>
+     </table>
+  </p>
+  </div><!--Fin onglet doctab-4 -->
+  
+  
+   <div id="doctab-5">
+
+  <p>
+   <pre>
+   <code class="documentation">
+   $('#brixploder').brixploderball(
+      {width:6,
+       top:100,
+       left:50,
+       heigth:6
+      }); 
+   </code>
+   </pre>
+  
+   <table id="optionsbrixploderball" class="ui-widget ui-widget-content">
+       <thead>
+			<tr class="ui-widget-header ">
+				<th>Options</th>
+				<th>Valeur par d&eacute;faut</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+       <tbody>
+        
+        <tr>
+		 <td>width</td>
+		 <td>360</td>
+		 <td>largeur en pixel de la balle</td>
+		</tr>
+		
+		<tr>
+		 <td>height</td>
+		 <td>500</td>
+		 <td>hauteur de la balle en pixels</td>
+		</tr>
+		
+		
+		<tr>
+		 <td>top</td>
+		 <td>50</td>
+		 <td>position top de la balle</td>
+		</tr>
+		
+		<tr>
+		 <td>left</td>
+		 <td>50</td>
+		 <td>position left de la balle</td>
+		</tr>
+		
+       
+       </tbody>
+     </table>
+  </p>
+  </div><!--Fin onglet doctab-5 -->
+
+  
+  
+  
+</div><!--Fin Tab Documentation-->
+</body>
+</html>

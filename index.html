@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" >
+<head level="1">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Bienvenue chez evifere</title>
+
+ <link rel="stylesheet" rel="stylesheet" title="Default" href="./css/redmond2/jquery-ui-1.8.9.custom.css" type="text/css" media="screen">
+  
+ <style>
+  body,table{margin:0;padding:0;width:100%;height:100%;}
+  td{text-align:center}
+  .ui-tabs-panel{min-height:400px}
+  .ui-accordion-header{min-height:24px;height:24px;}
+  .ui-accordion-content{min-height:50px;height:50px;}
+  .ui-tabs-panel{width:600px;}
+ 
+  .maintab{position:absolute;top:50px;left:100px;}
+   .contact{position:absolute;top:50px;left:800px;margin: 0 1em 1em 0;width:100px;}
+  .imgbrixploder{width:50%;height:50%;}
+ </style>
+
+ <script type="text/javascript" src="./js/ext/jquery-1.5.1.min.js"></script>
+ <script type="text/javascript" src="./js/ext/jquery.cookie.js"></script>        
+ <script type="text/javascript" src="./js/ext/jquery-ui-1.8.9.custom.min.js"></script>
+
+ <script type="text/javascript" src="./js/core/main-instance.js"></script>
+
+</head>
+
+<body>
+
+
+ <div id="tabs-main" class="maintab">
+	<ul>
+		<li><a href="#accueil">Accueil</a></li>
+		<li><a href="#jquiproj">Mes Projets JQuery UI : UI-BrixPloder</a></li>
+		<li><a href="#jqeduiproj">Mes Projets JQuery UI : edUI</a></li>
+		<li><a href="#cv">Mon C.V</a></li>
+	</ul>
+	<div id="accueil">
+		<p>Bienvenue sur le site d'evifere</p>
+		<p>Ce site a pour but de promouvoir l'utilisation de <a href="#" id="jquisite">jQuery UI</a> et de pr&eacute;senter certains de mes projets</p>
+	  <p>Je pr&eacute;senterai certains tutos cours sur le sujet</p>
+	
+	</div>
+	<div id="jquiproj">
+		<p>Mon Projet datant de 2011</p>
+		<p><b>UI-BrixPloder</b> &nbsp; <a href="#" id="uibrixploderdocs">Documentation</a></p>
+		<p><div class="ui-widget-content">
+		    <table>
+		    <tr><td><img class="imgbrixploder" src="./img/brixploder.png"></td>
+		    <td><button id="playbrixploder">Essayer une partie</button></td>
+		    </tr>
+		    </table>
+		   </div>    
+		 </p>
+		
+		
+	</div>
+	<div id="jqeduiproj">
+		<p>Mon Projet en Cours enfin en ligne</p>
+		<p><b>edUI</b> &nbsp; <a href="./edUI">Tester</a></p>
+		
+		<p><div class="ui-widget-content">
+		    <table>
+		    <tr><td><a href="./edUI"><img class="imgbrixploder" src="./img/edUI.png"></a></td>
+		    
+		    </tr>
+		    </table>
+		   </div>    
+		 </p>
+		
+	</div>
+	<div id="cv">
+	<!--- accordion cv -->
+	<div id="accordion_cv">
+	<h3><a href="#">P&eacute;riode 2011 - 2012</a></h3>
+	<div>
+		<p>
+		D&eacute;veloppeur triptique PHP5 ,librairie ajax (jQuery + jQuery UI),MYSQL
+		<br/>
+		D&eacute;veloppeur SOAP .Net chez un &eacute;diteur logiciel de data asset management
+		</p>
+	</div>
+	<h3><a href="#">P&eacute;riode 2008 - 2011</a></h3>
+	<div>
+		<p>
+		D&eacute;veloppeur triptique PHP5 ,librairie ajax (jQuery + jQuery UI),MYSQL
+		
+		chez un &eacute;diteur logiciel de gestion documentaire
+		</p>
+	</div>
+
+	<h3><a href="#">P&eacute;riode 2006 - 2008</a></h3>
+	<div>
+		<p>
+		D&eacute;veloppeur environnement n tiers java 1.5 ,MYSQL
+		
+		chez un &eacute;diteur logiciel du secteur de la gestion documentaire
+		</p>
+	</div>
+	
+	<h3><a href="#">P&eacute;riode 2005 - 2006</a></h3>
+	<div>
+		<p>
+		D&eacute;veloppeur JAVA et PHP
+		au sein du service reporting et statistiques d'une marque blanche de t&eacute;l&eacute;phonie mobile de t&eacute;l&eacute;chargement de titres musicaux.
+		</p>
+	</div>
+	
+	<h3><a href="#">P&eacute;riode 2002 - 2005</a></h3>
+	<div>
+		<p>
+		D&eacute;veloppeur C
+		chez un &eacute;diteur logiciel
+	 </p>
+	</div>
+	
+		<h3><a href="#">P&eacute;riode 2000 - 2002</a></h3>
+	<div>
+		<p>
+		D&eacute;veloppeur en apprentissage chez un &eacute;diteur logiciel
+	 </p>	 
+  </div>
+
+	
+		 	
+
+		  
+	
+
+	 
+	</div><!-- accordion cv-->
+ </div>   <!-- fin div cv-->
+	
+</div><!--fin tabs-->
+	
+
+<div class="contact ui-widget  ui-widget-content ui-corner-all">
+		<div class="ui-widget ui-widget-header ui-corner-all">Me contacter</div>
+
+		<div class="ui-widget  ">
+		     <a id="mailme" href="mailto:evifere@gmail.com">Evifere's Box</a>
+		  </div>
+		
+ </div>	 
+
+</body>
+</html>
