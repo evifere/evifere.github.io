@@ -33,6 +33,17 @@ function ()
      window.location = "/docs/ui-brixploder/"; 
       
      });
+     
+    $('#uibrixploderproject') .button({
+            icons: {
+                primary: "ui-icon-folder-collapsed"
+    }})
+    .click(function ()
+     {
+     window.location = "https://github.com/evifere/ui-brixploder"; 
+      
+     });
+  
   
  
     
