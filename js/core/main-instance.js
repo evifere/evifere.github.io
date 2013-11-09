@@ -44,6 +44,16 @@ function ()
       
      });
   
+    $('#eduiproject') .button({
+            icons: {
+                primary: "ui-icon-folder-collapsed"
+    }})
+    .click(function ()
+     {
+     window.location = "https://github.com/evifere/edUI"; 
+      
+     });
+
   
  
     
