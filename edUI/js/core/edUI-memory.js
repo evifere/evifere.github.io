@@ -60,7 +60,7 @@ function ()
     onBoardEmpty:function (e,myUI)
      {
      $('#dlgmsgend_' + $(myUI._e).attr('id'))
-      .attr('title','Bravo tu as gagn&eacute; !! \\0/ ')
+      .attr('title','Bravo tu as gagné !! \\0/ ')
       .dialog({
       	modal:true,
       		minHeight: 130,
@@ -87,6 +87,10 @@ function ()
        $(this).css('visibility', 'hidden');
        });
     
+    console.log(myUI._self._iCards);
+    console.log($('.cardfound').length);
+
+
     if ( myUI._self._iCards  === $('.cardfound').length)
          myUI._self._trigger("onBoardEmpty",null,myUI);
      
@@ -120,7 +124,7 @@ function ()
      
      
      $('#dlgmsg_' + $(myUI._e).attr('id'))
-      .attr('title','Tu es s&ucirc;r ?')
+      .attr('title','Tu es sûr ?')
       .dialog({
       	modal:true,
       	minHeight: 130,
@@ -177,8 +181,7 @@ function ()
           	      myUI._self._trigger("onClickCard",null,myUI);  
          
           	      }
-          	     
-          	     )
+          	    );
           	    });
            
           
@@ -247,8 +250,8 @@ function ()
         .addClass('ui-widget')
         .addClass('ui-corner-all')
         .addClass('ui-widget-content')
-        .css(_o.css)
-              
+        .css(_o.css);
+
      
      //  alert($dlg.html());
        
@@ -269,7 +272,8 @@ function ()
        var _e = this.element;
        var _o = this.options;
        var _self = this;
-       
+      
+      _self._iCards = 0; 
       
        $(_e).data('options',_o);
        
@@ -318,7 +322,7 @@ function ()
         $(_e).sortable({revert: true,
         	             placeholder: 'ui-state-highlight',
         	             forcePlaceholderSize:true
-        })      
+        });      
        
      },
      destroy: function() {

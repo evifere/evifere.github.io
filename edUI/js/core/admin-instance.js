@@ -6,7 +6,7 @@ function ()
     $('#edui-menu').html('').accordion('destroy');
     $.loadMenu('WSedUIAdminMenu','edui-menu',$.__LEFT_ADMIN_MENU);
 
-  }
+  };
   
   $.saveBoard = function ()
   {
@@ -144,11 +144,10 @@ function ()
             $('#edui-bar-board-section-newfile').val('');    
           	$('#edui-bar-board-section-newfile').attr('disabled',!($(this).attr('value') === '__new') );
             
-          	//$('#board-memo').data('xml',($(this).attr('value') === '__new') ? $(this).text() : $('#edui-bar-board-section-newfile').val());
-  
               });
           
-        });+
+      });
+      
   $('#edui-bar-board-section-newfile').attr('disabled','true');
    
  });//fin ready

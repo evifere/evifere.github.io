@@ -35,7 +35,7 @@ function ()
    
   return  $('#'+menuselector).find('div:eq('+iSection+')').data('xmldeckfile');
 
- }
+ };
          
          
  $.loadMenu = function (service,menuselector,type,undefined)
@@ -110,6 +110,6 @@ function ()
                 }     
      }); 
   
- }
+ };
   
  });//fin ready
