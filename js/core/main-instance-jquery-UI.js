@@ -2,9 +2,13 @@ $(document).ready (
 function ()
  {
  
-  $('#tabs-main').tab();
-
+  $('#tabs-main').tabs();
+  $('#accordion_cv').accordion();
   $('#playbrixploder')
+    .button({
+            icons: {
+                primary: "ui-icon-play"
+    }})
     .click(function ()
      {
      window.location = "./ui-brixploder"; 
@@ -20,26 +24,43 @@ function ()
    );
   
   
-  $('#uibrixploderdocs')
+  $('#uibrixploderdocs') .button({
+            icons: {
+                primary: "ui-icon-document"
+    }})
     .click(function ()
      {
      window.location = "./docs/ui-brixploder/"; 
       
      });
      
-    $('#uibrixploderproject')
+    $('#uibrixploderproject') .button({
+            icons: {
+                primary: "ui-icon-folder-collapsed"
+    }})
     .click(function ()
      {
      window.location = "https://github.com/evifere/ui-brixploder"; 
       
      });
   
-    $('#eduiproject')
+    $('#eduiproject') .button({
+            icons: {
+                primary: "ui-icon-folder-collapsed"
+    }})
     .click(function ()
      {
      window.location = "https://github.com/evifere/edUI"; 
       
      });
 
+  
+ 
+    
+  $('#mailme')
+    .button({
+            icons: {
+                primary: "ui-icon-mail-open"
+    }})
   
  });//fin ready
