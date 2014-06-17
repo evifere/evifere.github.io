@@ -42,6 +42,49 @@ panel-body {
 padding: 24px;
 }
 
+div.filter-options {
+    margin: 15px 0 15px 0;
+}
+figure {
+    position: relative;
+    line-height: 0;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 15px;
+}
+figure img {
+    width: 100%;
+    height: auto;
+}
+figcaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 2s ease 0s;
+    -moz-transition: all 2s ease 0s;
+    -ms-transition: all 2s ease 0s;
+    -o-transition: all 2s ease 0s;
+    transition: all 2s ease 0s;
+}
+figcaption:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+figcaption:hover > div {
+    color: rgba(255, 255, 255, 0);
+}
+figcaption > div {
+    position: absolute;
+    bottom: 0;
+    color: rgba(255, 255, 255, 1);
+    -webkit-transition: all 2s ease 0s;
+    -moz-transition: all 2s ease 0s;
+    -ms-transition: all 2s ease 0s;
+    -o-transition: all 2s ease 0s;
+    transition: all 2s ease 0s;
+}
  </style>
 
 </head>
@@ -90,47 +133,68 @@ padding: 24px;
 			</div>
 		</div>
 		<div id="jquiproj" class="tab-pane">
-			<div class="panel panel-default">
-  				<div class="panel-body">
-				
-				<p>Mon Projet datant de 2011</p>
-				<p><b>UI-BrixPloder</b> &nbsp;
-				 <button id="uibrixploderdocs" class="btn btn-primary"><span class="glyphicon glyphicon-book"></span> Documentation</button> 
-				</p>
-				<p><b>UI-BrixPloder on github</b> &nbsp;  <button  class="btn btn-primary" id="uibrixploderproject" ><span class="glyphicon glyphicon-search"></span> Have a look</button></p>
-				<p>
-				<div class="ui-widget-content">
-			    	<table>
-			    	<tr><td>
-						
-      						<img class="imgbrixploder" src="./img/brixploder.png">
+			<div class="panel panel-success">
+  				
+                <div class="panel-heading text-center">Mon Projet datant de 2011</div>
+                <div class="panel-body">
 
-			    	</td>
-			    		<td><button id="playbrixploder" class="btn btn-primary"><span class="glyphicon glyphicon-play-circle"></span> Essayer une partie</button></td>
-			    	</tr>
-			    </table>
-			   	</div>    
-			 	</p>
+                <!-- miniature projet -->
+        <div class="col-md-3" >
+            <figure>
+               
+                    <img src="./img/brixploder.png" />
+                    <figcaption>
+                        <div class="collapse navbar-collapse">
+                            <h3>
+                               UI-BrixPloder 
+                            </h3>
+                            <p>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#" id="uibrixploderdocs"><span class="glyphicon glyphicon-book"></span> Documentation</a></li>
+    <li><a href="#" id="uibrixploderproject"><span class="glyphicon glyphicon-search"></span> On gitHub</a></li>
+    <li><a href="#"  id="playbrixploder" ><span class="glyphicon glyphicon-play-circle"></span> Essayer une partie</a></li>
+    </ul>
+</div>
+                            </p>
+                        </div>
+                    </figcaption>
+                
+            </figure>
+        </div>
+        <!-- fin miniature projet -->
   				</div>
 			</div>
 		</div>
 
 		<div id="jqeduiproj" class="tab-pane">
-			<div class="panel panel-default"><!-- Panel-->
-  				<div class="panel-body">
+			<div class="panel panel-warning"><!-- Panel-->
+  				<div class="panel-heading text-center">Mon dernier Projet</div>
+                <div class="panel-body">
 
-			<p>Mon Projet en Cours enfin en ligne</p>
-			<p><b>edUI</b> &nbsp; <button class="btn btn-primary" href="./edUI">Tester</button></p>
-			<p><b>edUI on github</b> &nbsp; <button id="eduiproject" class="btn btn-primary">Have a look</button></p>
-			
-			<p><div class="ui-widget-content">
-			    <table>
-			    <tr><td><a href="./edUI"><img class="imgbrixploder" src="./img/edUI.png"></a></td>
-			    
-			    </tr>
-			    </table>
-			   </div>    
-			 </p>
+<!-- miniature projet -->
+        <div class="col-md-3" >
+            <figure>
+               
+                    <img src="./img/edUI.png" />
+                    <figcaption>
+                        <div>
+                            <h3>
+                                <a class="btn btn-primary" href="./edUI">Tester</a>
+                            </h3>
+                            <p>
+                               <button id="eduiproject" class="btn btn-primary">On gitHub</button>
+                            </p>
+                        </div>
+                    </figcaption>
+                
+            </figure>
+        </div>
+        <!-- fin miniature projet -->
 
   				</div>
 			</div><!-- fin Panel-->
@@ -142,7 +206,7 @@ padding: 24px;
  <!--- accordion cv -->
   <div id="accordion_cv" class="panel-group" >
 
-  <div class="panel panel-default">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion_cv" href="#now">
@@ -256,7 +320,7 @@ padding: 24px;
     </div>
   </div>
 
- <div class="panel panel-default">
+ <div class="panel panel-info">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion_cv" href="#origin">
