@@ -41,5 +41,10 @@ function ()
       
      });
 
-  
+    $('#PoTproject')
+    .click(function ()
+     {
+     window.location = "https://github.com/evifere/powerOfThree"; 
+      
+     });  
  });//fin ready
