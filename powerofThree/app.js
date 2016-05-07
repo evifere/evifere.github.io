@@ -23,7 +23,7 @@
     PoT.AppRouter = {};
     PoT.AppRouter.Instance = {};
     PoT.Events = {};
-    PoT.version = "0.1.8";
+    PoT.version = "0.1.9";
 
 
 
@@ -34,7 +34,7 @@
     PoT.AppRouter = Backbone.Router.extend({
      routes: {
       '': 'home',
-      'game': 'game',
+      'game/:difficulty': 'game',
       '*path': 'redirect404' // ALWAYS MUST BE THE LAST ROUTE
         },
 
@@ -61,7 +61,6 @@
     after: function() {},
 
     home: function() {
-      console.log('home');
       this.before();
 
       PoT.Views.Instances.HomeView = new PoT.Views.HomeView();
@@ -69,11 +68,10 @@
 
       this.after();
         },
-    game: function() {
-        console.log('game');
+    game: function(difficulty) {
       this.before();
 
-      PoT.Views.Instances.GameView = new PoT.Views.GameView();
+      PoT.Views.Instances.GameView = new PoT.Views.GameView({'difficulty':difficulty});
       PoT.Views.Instances.GameView.render();
 
       this.after();
@@ -89,8 +87,6 @@
 })(window, window.document, window.PoT || (window.PoT = {}));
 (function(win, doc, PoT){
 
-PoT.MAX_DICES = 64;
-
 PoT.Models.Dice = Backbone.Model.extend({
 
     defaults: {
@@ -99,23 +95,47 @@ PoT.Models.Dice = Backbone.Model.extend({
         z:0,
         value:-1,
         mesh:null
-        }
+        },
+
+
+          //overriding set
+     validate : function(attributes, options) {
+
+        if(!(this.collection.minCoord <= attributes[PoT.X_AXIS] &&  attributes[PoT.X_AXIS] <= this.collection.maxCoord))
+            return 'X Out of range (' + this.collection.minCoord + ',' + this.collection.maxCoord+')';
+
+        if(!(this.collection.minCoord <= attributes[PoT.Y_AXIS] &&  attributes[PoT.Y_AXIS] <= this.collection.maxCoord))
+            return 'Y Out of range (' + this.collection.minCoord + ',' + this.collection.maxCoord+')';
+
+        if(!(this.collection.minCoord <= attributes[PoT.Z_AXIS] &&  attributes[PoT.Z_AXIS] <= this.collection.maxCoord))
+            return 'Z Out of range (' + this.collection.minCoord + ',' + this.collection.maxCoord+')';
+
+        return '';
+     }
 });
 
 PoT.Collections.Dices = Backbone.Collection.extend({
   model: PoT.Models.Dice,
 
+  maxDices:0,
+  initialize:function(options)
+  {
+    this.maxDices = options.maxDices;
+    this.minCoord = options.minCoord;
+    this.maxCoord = options.maxCoord;
+  },
+
   initWithRandomDice:function(nbOfDice){
 
     for(d = 0;d < nbOfDice;d++){
         var randomDice = new PoT.Models.Dice({
-            x:_.random(-2,1),
-            y:_.random(-2,1),
-            z:_.random(-2,1),
+            x:_.random(this.minCoord,this.maxCoord),
+            y:_.random(this.minCoord,this.maxCoord),
+            z:_.random(this.minCoord,this.maxCoord),
             value:_.random(1,2)
         });
 
-    if(this.length === PoT.MAX_DICES)
+    if(this.length ===  this.maxDices )
         {
         console.log('You loose T.T');
         return false;
@@ -148,13 +168,15 @@ PoT.Collections.Dices = Backbone.Collection.extend({
     /**
     * PoT constants
     */
+   PoT.DIFFICULTY_EASY = 4;
+   PoT.DIFFICULTY_NORMAL = 3;
+   PoT.DIFFICULTY_DIFFICULT = 2;
+
    PoT.LEFT_ARROW = 37,PoT.UP_ARROW = 38, PoT.RIGHT_ARROW = 39, PoT.DOWN_ARROW = 40;
    PoT.MOUSE_NO_DIRECTION = 0 ,PoT.MOUSE_UP = -1,PoT.MOUSE_DOWN = 1,PoT.MOUSE_LEFT = -2,PoT.MOUSE_RIGHT = 2 ,PoT.MOUSE_WHEEL_UP = -3, PoT.MOUSE_WHEEL_DOWN = 3;
 
    PoT.GO_LEFT = -0.02,PoT.GO_UP = -0.01, PoT.GO_RIGHT = -PoT.GO_LEFT, PoT.GO_DOWN = -PoT.GO_UP;
    PoT.MAIN_CUBE_WIDTH = 600;
-   PoT.DICE_WIDTH = PoT.MAIN_CUBE_WIDTH/4;
-   PoT.DICE_COORD_RATIO = PoT.DICE_WIDTH/2 ;
    PoT.MOUSE_THROTTLE_SENSIVITY = 600;
    PoT.REFRESH_SCENE_THROTTLE_SENSIVITY = 150;
 
@@ -182,9 +204,13 @@ PoT.Collections.Dices = Backbone.Collection.extend({
         'touchend canvas':'processTouchEnd',
         'touchstart canvas':'processTouchStart',
         'mousewheel canvas':'processMouseWheel',//other browser
-        'DOMMouseScroll canvas':'processMouseWheel' // FF mousewheel event
+        'DOMMouseScroll canvas':'processMouseWheel', // FF mousewheel event,
+        'click .backhome':'backToHome'
     },
 
+    backToHome:function(){
+        PoT.AppRouter.Instance.navigate('', true);
+    },
     processMouseWheel:function(e){
         var zDirection = PoT.MOUSE_NO_DIRECTION;
         e = window.event || e;
@@ -339,9 +365,11 @@ PoT.Collections.Dices = Backbone.Collection.extend({
      this.processRotation(rotationParams);
     },
 
-    initialize: function() {
+    initialize: function(options) {
 
         this.subtemplate = tpl('gamecanvas');
+
+        this.difficulty = options.difficulty * 1;
 
         //add a key listener for processing the rotation of the main cube
         $(window).on("keydown", this.processKeyEvent.bind(this));
@@ -369,10 +397,13 @@ PoT.Collections.Dices = Backbone.Collection.extend({
         this.initBox();
 
         //init the dice matrix
-        this.dices = new PoT.Collections.Dices();
+        this.dices = new PoT.Collections.Dices({'maxDices':Math.pow(this.difficulty,3),
+                                                'minCoord':this.getMinDiceCoord(),
+                                                'maxCoord':this.getMaxDiceCoord()
+                                                });
         this.dices.on('add', this.addDice, this);
 
-        this.dices.initWithRandomDice(_.random(2,4));
+        this.dices.initWithRandomDice(_.random(2,this.difficulty));
 
         //add an axis helper for debug
         //this.axisHelper = new THREE.AxisHelper( 300 );
@@ -407,15 +438,63 @@ PoT.Collections.Dices = Backbone.Collection.extend({
 
     diceCoord:function (c)
     {
-        return  c * PoT.DICE_WIDTH + PoT.DICE_COORD_RATIO;
+        return  c * this.getDiceWidth() + this.getDiceRatio();
     },
 
+    getMinDiceCoord:function()
+    {
+        var minDice = 0;
+        var diff = this.difficulty;
+
+        switch(true)
+        {
+            case (diff == PoT.DIFFICULTY_DIFFICULT) :
+                minDice = 0;
+                break;
+            case (diff == PoT.DIFFICULTY_NORMAL) :
+                minDice = -1;
+                break;
+            case (diff == PoT.DIFFICULTY_EASY) :
+                minDice = -2;
+                break;
+            default:
+            console.log('not found');
+            break;
+        }
+
+        return minDice;
+    },
+    getMaxDiceCoord:function()
+    {
+        return 1;
+    },
+
+    getDiceWidth:function()
+    {
+        return  PoT.MAIN_CUBE_WIDTH / (this.difficulty);
+
+    },
+    getDiceRatio:function(){
+        return this.getDiceWidth()/2;
+    },
+    renderDifficultyMode:function(){
+    if(this.difficulty == PoT.DIFFICULTY_DIFFICULT)
+        return this.$('#mode').text('DIFFICULT Mode');
+
+    if(this.difficulty == PoT.DIFFICULTY_NORMAL)
+        return this.$('#mode').text('Normal Mode');
+
+    return this.$('#mode').text('Easy Mode');
+    },
     render: function() {
     this.$el.empty();
     this.$el.append(this.template);
+    this.renderDifficultyMode();
 
     if(!_.isUndefined(this.renderer)){
+        //append canvas to the DOM
        this.$el.append(this.renderer.domElement);
+       //tricks in order not to use a subview for canvas
        $(this.renderer.domElement).wrap(this.subtemplate());
        }
     else
@@ -431,7 +510,7 @@ PoT.Collections.Dices = Backbone.Collection.extend({
 
     addDice:function(model)
     {
-        this.geometry = new THREE.BoxGeometry( PoT.DICE_WIDTH , PoT.DICE_WIDTH, PoT.DICE_WIDTH);
+        this.geometry = new THREE.BoxGeometry( this.getDiceWidth(),this.getDiceWidth(),this.getDiceWidth());
         this.material = new THREE.MeshBasicMaterial({map:this.getFaceTexture(model.get('value'))});
 
         var dice = new THREE.Mesh( this.geometry, this.material );
@@ -476,7 +555,7 @@ PoT.Collections.Dices = Backbone.Collection.extend({
                     return true;
                 }
 
-                if(Math.abs(model.get(axis) + operation)  < 3){
+                if(Math.abs(model.get(axis) + operation)  <=  _self.difficulty - 1  ){
                     var newSpotCoords = model.pick(PoT.X_AXIS,PoT.Y_AXIS,PoT.Z_AXIS);
 
                     newSpotCoords[axis] += operation;
@@ -485,7 +564,7 @@ PoT.Collections.Dices = Backbone.Collection.extend({
 
                     //if new position is not occupied move the dice
                     if(_.isUndefined(newposition)){
-                        model.set(axis,model.get(axis) + operation);
+                        model.set(axis,model.get(axis) + operation,{validate:true});
                     }
                     else{//we have a collision merge the dice if they have the same value
 
@@ -493,10 +572,11 @@ PoT.Collections.Dices = Backbone.Collection.extend({
                             newposition.set('value',newposition.get('value') + model.get('value'));
                             model.destroy();
                         }
-                        else
+                        else{
                             return true;
+                        }
                     }
-                }
+                }//end if
             });
         }//end for loop
 
@@ -622,8 +702,10 @@ PoT.Collections.Dices = Backbone.Collection.extend({
         this.dices.forEach (function(model, index){
             var dice = model.get('mesh');
 
-            dice.rotation.x += rotationParams.x;
-            dice.rotation.y += rotationParams.y;
+            if(!_.isUndefined(dice) && dice != null){
+                dice.rotation.x += rotationParams.x;
+                dice.rotation.y += rotationParams.y;
+            }
         });
 
         this.mainBox = new THREE.Box3().setFromObject(this.mainCube);
@@ -648,11 +730,11 @@ PoT.Collections.Dices = Backbone.Collection.extend({
     template: tpl('home'),
 
     events:{
-        'click #start_game':'startGame'
+        'click .start_game':'startGame'
     },
 
-    startGame:function(){
-        PoT.AppRouter.Instance.navigate('game', true);
+    startGame:function(e){
+        PoT.AppRouter.Instance.navigate('game/'+ $(e.target).data('difficulty'), true);
     },
 
     initialize: function() {},
@@ -660,7 +742,6 @@ PoT.Collections.Dices = Backbone.Collection.extend({
     render:function(){
 
     this.$el.html(this.template);
-      //this.$('#start').button();
 
     return this;
     }
