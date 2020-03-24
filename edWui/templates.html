@@ -1,0 +1,103 @@
+<script type="text/template" id="home-viewtpl">
+<ul class="breadcrumb">
+  <li class="breadcrumb-item">
+     <span>Cliquer sur un jeu </span>
+  </li>
+  <li class="breadcrumb-item">
+    <button id="gotoMemoryBoard" class="btn btn-primary input-group-btn">Jeu de m&eacute;mo</button>
+  </li>
+</ul></script>
+<script type="text/template" id="memory-board-accordion-viewtpl">
+<% 
+_.each(boards, function(board,index) {
+%>
+  <div class="btn-group group <%= (index%2) ? 'hiddenMenu' : '' %> show-ib-xl dropdown" >
+  	<a href="javascript:void(0)" class="btn"><%= board.title %></a>
+    <a href="javascript:void(0)" class="btn dropdown-toggle-btn" tabindex="<%= index %>">
+      <i class="icon icon-caret"></i>
+    </a>
+
+    <ul class="menu">
+
+    <%
+    _.each(board.decks[0].deck, function(deck,index) {
+    %>
+	  <li class="menu-item">
+	        <a class="deckLauncher" data-boardfile="<%= board.boardFile %>" data-deck="<%= index %>" title="<%= deck.$.description %>"   ><%= deck.$.name %></a>
+	  </li>
+    <%
+    });
+    %>
+    </ul>
+  </div>
+<%
+});
+%>
+<button class="btn btn-primary btn-action btn-lg nextMenu"><i class="icon icon-forward"></i></button>
+</script>
+<script type="text/template" id="memory-board-default-viewtpl">Cliques sur un lien afin de charger un nouveau M&eacute;mo
+</script>
+<script type="text/template" id="memory-board-viewtpl"><div id="edWuiBar"></div>
+<header class="navbar">
+	<div id="edWuiMenu"></div>
+</header>
+<!--div id="dlgmsg_edWuiBoardMemo"></div-->
+<div id="dlgmsgerr_edWuiBoardMemo"></div>
+<div id="dlgmsgend_edWuiBoardMemo"></div>
+
+<div id="edWuiDeckName" class="divider text-center" data-content="<%=defaultMessage%>"></div>
+
+<div class="container">
+  <div class="columns">
+    <div id="edWuiBoardMemo" >
+		<div class="toast toast-success endBoard hiddenMsg text-center"><button class="btn btn-clear float-right "></button>Bravo tu as gagné !! \\0/</div>
+		<div class="toast toast-success cardMatch hiddenMsg text-center"><button class="btn btn-clear float-right "></button>Bien Joué !</div>
+		<div class="toast toast-error hiddenMsg text-center"><button class="btn btn-clear float-right"></button>C'est faux !</div>
+    	<div class="memocontent"></div>
+    	<div class="modal modal-sm">
+		  <a href="#memo/close" class="modal-overlay" aria-label="Non :("></a>
+		  <div class="modal-container">
+		    <div class="modal-header">
+		      <a href="javascript:void(0);" class="confirmNo btn btn-clear float-right" aria-label="Non :("></a>
+		      <div class="modal-title h5">Tu es sûr ?</div>
+		    </div>
+		    <div class="modal-body">
+		      <div class="content">
+		        <!-- content here -->
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		      <button id="confirmYes" class="btn btn-primary confirmYes">Oui :)</button>
+		      <a class="confirmNo" href="javascript:void(0);" class="btn btn-link">Non :(</a>
+		    </div>
+		  </div>
+		</div>
+
+    </div>
+  </div>
+</div>
+
+
+</script>
+<script type="text/template" id="memory-deck-viewtpl"><% 
+_.each(couples, function(cards,idcouple) {
+%>
+
+<%
+_.each(cards.card, function(card,i) {
+ var classHideUnselected = (hideunselected === true) ? 'ui-widget-header':'ui-state-default';
+ var classEditable = (editable === true) ? 'edWuiEditable':'edWuiNotEditable';
+ var classContainerHideUnselected = (hideunselected === true && !editable) ? 'edWuiCardHide':'edWuiCardShow';
+ var idAttr = idcouple + '_' + i;
+ var divClass = "edWuiCard bg-primary rounded " +  classEditable + " " + classHideUnselected + " " + idcouple;
+%>
+<div id="<%=idAttr%>" class="<%=divClass%>" data-group="<%=idcouple%>" >
+	<div class="cardcontainer <%= classContainerHideUnselected%>"><% print(card);%></div>
+</div>
+<%
+});
+%>
+
+<%
+});
+%></script>

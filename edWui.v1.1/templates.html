@@ -1,0 +1,79 @@
+<script type="text/template" id="home-viewtpl"><div class="ui-widget ui-widget-content">
+    <span class="ui-accordion-header ui-state-active">Cliquer sur un jeu </span>
+
+    <button id="gotoMemoryBoard">Jeu de m&eacute;mo</button>
+</div></script>
+<script type="text/template" id="memory-board-accordion-viewtpl">
+<% 
+_.each(boards, function(board,index) {
+%>
+<h3><a href="#"><%= board.title %></a></h3>
+<div title="<%= board.description %>"  >
+
+    <% 
+    _.each(board.decks[0].deck, function(deck,index) {
+    %>
+
+    <a class="deckLauncher" data-boardfile="<%= board.boardFile %>" data-deck="<%= index %>" title="<%= deck.$.description %>"   ><%= deck.$.name %></a>
+    <br/>
+    <%
+    });
+    %>
+
+</div>
+
+<%
+});
+%>
+
+
+</script>
+<script type="text/template" id="memory-board-default-viewtpl">
+<span >Cliques sur un lien afin de charger un nouveau M&eacute;mo</span>
+</script>
+<script type="text/template" id="memory-board-viewtpl"><div id="edWuiBar">
+</div>
+<div id="edWuiMenu">
+
+</div>
+<div id="dlgmsg_edWuiBoardMemo"></div>
+<div id="dlgmsgerr_edWuiBoardMemo"></div>
+<div id="dlgmsgend_edWuiBoardMemo"></div>
+
+
+<fieldset class="ui-widget ui-widget-content memoryFieldset">
+  <legend class="ui-widget-header ui-corner-all"><span id="edWuiDeckName"><%=defaultMessage%></span></legend>
+
+    <div id="edWuiBoardMemo" class="ui-widget-content">
+    </div>
+</fieldset>
+
+
+</div></script>
+<script type="text/template" id="memory-deck-viewtpl"><% 
+_.each(couples, function(cards,idcouple) {
+%>
+
+<%
+_.each(cards.card, function(card,i) {
+ var classHideUnselected = (hideunselected === true) ? 'ui-widget-header':'ui-state-default';
+ var classEditable = (editable === true) ? 'edWuiEditable':'edWuiNotEditable';
+ var classContainerHideUnselected = (hideunselected === true && !editable) ? 'edWuiCardHide':'edWuiCardShow';
+ var idAttr = idcouple + '_' + i;
+ var divClass = "edWuiCard ui-widget ui-corner-all " +  classEditable + " " + classHideUnselected + " " + idcouple;
+%>
+<div id="<%=idAttr%>" class="<%=divClass%>" data-group="<%=idcouple%>" >
+
+<center class="cardcontainer <%= classContainerHideUnselected%>">
+
+<% print(card);%>
+
+</center>
+</div>
+<%
+});
+%>
+
+<%
+});
+%></script>
