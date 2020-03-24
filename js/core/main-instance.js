@@ -37,7 +37,7 @@ function ()
     $('#eduiproject')
     .click(function ()
      {
-     window.location = "https://github.com/evifere/edUI"; 
+     window.location = "https://github.com/evifere/edWui"; 
       
      });
 
