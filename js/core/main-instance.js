@@ -46,5 +46,12 @@ function ()
      {
      window.location = "https://github.com/evifere/powerOfThree"; 
       
-     });  
+     }); 
+     
+     $('#cocoloricoProject')
+     .click(function ()
+      {
+      window.location = "https://github.com/evifere/cocolorico"; 
+       
+      }); 
  });//fin ready

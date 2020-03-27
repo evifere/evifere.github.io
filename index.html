@@ -110,7 +110,8 @@ figcaption > div {
 		<li><a href="#accueil" data-toggle="tab"><span class="glyphicon glyphicon-home"></span>  Accueil</a></li>
 		<li><a href="#jquiproj" data-toggle="tab"><span class="glyphicon glyphicon-th"></span> UI-BrixPloder</a></li>
         <li><a href="#jqeduiproj" data-toggle="tab"><span class="glyphicon glyphicon-th"></span> edUI / edWui</a></li>
-		<li  class="active"><a href="#PoTproj" data-toggle="tab"><span class="glyphicon glyphicon-th"></span> Power of three </a></li>
+		<li><a href="#PoTproj" data-toggle="tab"><span class="glyphicon glyphicon-th"></span> Power of three </a></li>
+		<li  class="active"><a href="#cocoloricoProj" data-toggle="tab"><span class="glyphicon glyphicon-th"></span> Cocolorico </a></li>
 		<li><a href="#cv" data-toggle="tab">Mon C.V   <span class="glyphicon glyphicon-road"></span></a></li>
 	</ul>
 
@@ -241,9 +242,9 @@ figcaption > div {
 		</div>
 
 
-                <div id="PoTproj" class="tab-pane active">
-            <div class="panel panel-warning"><!-- Panel-->
-                <div class="panel-heading text-center">Mon dernier Projet</div>
+        <div id="PoTproj" class="tab-pane">
+            <div class="panel panel-success"><!-- Panel-->
+                <div class="panel-heading text-center">Mon projet datant de 2014</div>
                 <div class="panel-body">
 
         <div class="row">
@@ -286,6 +287,52 @@ figcaption > div {
                 </div>
             </div><!-- fin Panel-->
         </div>
+
+        <div id="cocoloricoProj" class="tab-pane active">
+            <div class="panel panel-warning"><!-- Panel-->
+                <div class="panel-heading text-center">Mon dernier Projet</div>
+                <div class="panel-body">
+
+        <div class="row">
+<!-- miniature projet -->
+        <div class="col-md-6" >
+            <figure>
+               
+                    <img src="./img/cocolorico.png" />
+                    <figcaption>
+                        <div class="center-block">
+                            <h3>
+                                Cocolorico
+                            </h3>
+                            <p class="text-right">
+                                Générateur de coloriages
+                            </p>
+
+                        </div>
+                    </figcaption>
+                
+            </figure>
+        </div>
+        <!-- fin miniature projet -->
+             <div class="col-md-6 "><div id="PoTWell" class="well well-lg text-justify"><b>Générateur de coloriages</b> <br/><br/>utilisant vuejs et fabric js pour la gestion du canvas </div>
+             <div class="col-md-6 ">
+                <p class="text-right">
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Action <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" id="cocoloricoProject"><span class="glyphicon glyphicon-search"></span> On gitHub</a></li>
+                                    <li><a href="./cocolorico"  ><span class="glyphicon glyphicon-play-circle"></span> Essayer</a></li>
+                                    </ul>
+                                </div>
+                    </p></div>
+             </div>
+
+                </div> <!-- fin row-->
+                </div>
+            </div><!-- fin Panel-->
+        </div>
 		<div id="cv" class="tab-pane">
  
  	<div class="panel panel-default"><!-- Panel-->
@@ -304,6 +351,46 @@ figcaption > div {
     <div id="now" class="panel-collapse collapse in">
       <div class="panel-body">
      	    <p>
+            En recherche d'emploi d&eacute;veloppeur nodejs expressjs vuejs
+
+            <a href="https://www.linkedin.com/in/n1c0l4s-j0117">Profile Linkedin</a>
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion_cv" href="#period2017-2019">
+          P&eacute;riode 2017 - 2019
+        </a>
+      </h4>
+    </div>
+    <div id="period2017-2019" class="panel-collapse collapse">
+      <div class="panel-body">
+     	    <p>
+            Editeur logiciel proposant une solution SAAS de PAO pour les particuliers et le
+            secteur éducatif.
+            <br/>
+            
+			D&eacute;veloppeur PHP 7.x laravel 5.5 et vuejs.
+			</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion_cv" href="#period2015-2017">
+          P&eacute;riode 2015 - 2017
+        </a>
+      </h4>
+    </div>
+    <div id="period2015-2017" class="panel-collapse collapse">
+      <div class="panel-body">
+     	    <p>
 			D&eacute;veloppeur triptique PHP5 (Framework proprio et Laravel) ,librairie js (jQuery + backbone + underscore + handlebars),MYSQL,cran intégration Rapache
  			<br/>
             Dev OPS ESXI et proxmox et pfSense
@@ -318,17 +405,17 @@ figcaption > div {
  <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion_cv" href="#period2011-2012">
+        <a data-toggle="collapse" data-parent="#accordion_cv" href="#period2013-2014">
           P&eacute;riode 2013 - 2014
         </a>
       </h4>
     </div>
-    <div id="period2011-2012" class="panel-collapse collapse">
+    <div id="period2013-2014" class="panel-collapse collapse">
       <div class="panel-body">
             <p>
-            D&eacute;veloppeur triptique PHP5 ,librairie js (jQuery + jQuery UI),MYSQL
+              Développeur Full stack - PHP/JS
             <br/>
-            D&eacute;veloppeur SOAP .Net chez un &eacute;diteur logiciel de data asset management
+             chez un éditeur logiciel proposant une solution cross-canal
             </p>
       </div>
     </div>
